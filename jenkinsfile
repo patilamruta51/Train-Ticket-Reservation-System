@@ -11,7 +11,7 @@ pipeline {
             steps {
 		sh '''
             git clone https://github.com/patilamruta51/Train-Ticket-Reservation-System.git
-	   cd Train-Ticket-Reservation-System
+	    cd Train-Ticket-Reservation-System
 		'''		
             }
         }

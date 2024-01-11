@@ -10,8 +10,8 @@ pipeline {
         stage('checkout') {
             steps {
 		sh '''
-            git clone https://github.com/patilamruta51/Train-Ticket-Reservation-System.git
-	    cd Train-Ticket-Reservation-System
+            git clone https://github.com/Dee601/game-of-life.git
+	   cd game-of-life
 		'''		
             }
         }
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 
             sh '''
-		cd /home/ec2-user/Train-Ticket-Reservation-System
+		cd /home/ec2-user/game-of-life
 		mvn clean install
 		''' 
 
@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-            sh ' cp TrainBook-1.0.0-SNAPSHOT.war  /mnt/apache-tomcat-9.0.80/webapps ' 
+            sh ' cp game-of-life/gameoflife-web/target/gameoflife.war  /mnt/apache-tomcat-9.0.80/webapps ' 
 			
             }
         }		

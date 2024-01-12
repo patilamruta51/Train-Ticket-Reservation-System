@@ -1,21 +1,10 @@
 pipeline {
-    agent {
+   agent {
     node {
         label 'built-in'
         customWorkspace '/home/ec2-user'
     }
 }
-    parameters {
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Whom should I say hello to?')
-
-        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
-
-        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-
-        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
-    }
 
     stages {
         stage('checkout') {
@@ -28,18 +17,22 @@ pipeline {
         }
 		stage('build') {
             steps {
+                
             sh '''
-		cd home/ec2-ser/Train-Ticket-Reservation-System
+		cd /home/ec2-user/Train-Ticket-Reservation-System
 		mvn clean install
 		''' 
-           }
+
+            }
         }
         stage('Deploy') {
             steps {
-            sh ' cp home/ec2-ser/Train-Ticket-Reservation-System/TrainBook-1.0.0-SNAPSHOT.war  /mnt/apache-tomcat-9.0.80/webapps ' 
+            sh ' cp /home/ec2-user/Train-Ticket-Reservation-System/target/TrainBook-1.0.0-SNAPSHOT.war  /mnt/apache-tomcat-9.0.85/webapps ' 
 			
             }
         }		
 
     }
 }
+
+
